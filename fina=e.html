@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Video Carousel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('c:/Users/Raja subramanian/Downloads/Phantom-II-Discover-Hero-Single-Twin-Card.jpg') no-repeat center center/cover;
+            overflow: hidden;
+        }
+        .swiper {
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+        .swiper-pagination-bullet-active {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <video muted loop>
+                    <source src="c:/Users/Raja subramanian/Downloads/14052141-hd_1920_1080_25fps.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="swiper-slide">
+                <video muted loop>
+                    <source src="c:/Users\Raja subramanian/Downloads/6985519-uhd_3840_2160_25fps.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="swiper-slide">
+                <video muted loop>
+                    <source src="c:/Users/Raja subramanian/Downloads/3115738-uhd_3840_2160_24fps.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.mySwiper', {
+            loop: true,
+            autoplay: { delay: 5000 },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            on: {
+                slideChangeTransitionEnd: function () {
+                    document.querySelectorAll('video').forEach(video => {
+                        video.pause();
+                        video.currentTime = 0;
+                    });
+                    let activeSlide = document.querySelector('.swiper-slide-active video');
+                    if (activeSlide) {
+                        activeSlide.play();
+                    }
+                }
+            }
+        });
+
+        window.onload = function () {
+            document.querySelector('.swiper-slide-active video').play();
+        };
+    </script>
+
+</body>
+</html>
