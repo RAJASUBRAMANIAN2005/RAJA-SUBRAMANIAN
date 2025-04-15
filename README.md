@@ -1,8 +1,4 @@
-                            DRONE WITH ARDUINO USING AI
-
-
-
-
+                            
 Introduction
 
 
